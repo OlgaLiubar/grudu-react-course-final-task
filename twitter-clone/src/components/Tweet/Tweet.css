@@ -1,0 +1,40 @@
+.tweet {
+    box-sizing: border-box;
+    margin: auto;
+    width: 780px;
+    min-height: 95px;
+    border: 1px solid rgba(0, 0, 0, 1);
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+    padding: 10px 14px;
+}
+
+.tweet:last-of-type {
+    margin-bottom: 20px;
+}
+
+.tweet__userpick {
+    height: 58px;
+    width: 58px;
+    font-size: 28px;
+    text-align: center;
+    line-height: 58px;
+    border: 2px solid rgb(208, 140, 76);
+    border-radius: 50%;
+}
+
+.tweet__body {
+}
+
+.tweet__username {
+    font-size: 22px;
+    font-weight: 500;
+}
+
+.tweet__text {
+    font-size: 22px;
+    width: 670px;
+}

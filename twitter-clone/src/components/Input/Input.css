@@ -1,0 +1,30 @@
+.input__section {
+    width: 780px;
+    margin: auto;
+    min-height: 267px;
+}
+
+.input__form {
+    width: 780px;
+    margin: auto;
+}
+
+.input__textarea {
+    box-sizing: border-box;
+    width: 100%;
+    min-height: 120px;
+    margin-top: 34px;
+    padding: 0 18px;
+    font-size: 28px;
+    border-radius: 8px;
+}
+
+.input__button {
+    width: 139px;
+    height: 55px;
+    border-radius: 8px;
+    font-size: 28px;
+    float: right;
+    background-color: #c6c4ca;
+    border: none;
+}
