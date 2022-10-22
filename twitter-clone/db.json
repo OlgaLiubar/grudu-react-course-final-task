@@ -3,27 +3,23 @@
     {
       "id": "1",
       "author_id": "johnsmith",
+      "author_name": "John Smith",
+      "initials": "JS",
       "text": "What are the pros of object-oriented programming?<br><br>Please, explain as if I'm 5."
     },
     {
       "id": "2",
       "author_id": "carlanotarobot",
+      "author_name": "Carla Notarobot",
+      "initials": "CN",
       "text": "Why use a debugger when you can fill your code with hundreds of <code>print()</code> statements?"
     },
     {
       "id": "3",
       "author_id": "ameliawarner",
+      "author_name": "Amelia Warner",
+      "initials": "AW",
       "text": "Describe your relationship with JavaScript with one word."
-    },
-    {
-      "author_id": "urfinjus",
-      "text": "Cats rule",
-      "id": "jwHtCzs"
-    },
-    {
-      "author_id": "urfinjus",
-      "text": "Dogs drool",
-      "id": "_eyq-Lw"
     }
   ],
   "users": [
@@ -41,6 +37,11 @@
       "id": "ameliawarner",
       "name": "Amelia Warner",
       "email": "ameliawarner@yahoo.com"
+    },
+    {
+      "email": "test@test.com",
+      "id": "johndoe",
+      "name": "John Doe"
     }
   ]
 }

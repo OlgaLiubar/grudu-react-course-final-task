@@ -10,6 +10,22 @@ class Auth {
       console.log(res.json());
       return Promise.reject(`Error: ${res.status}`);
     }
+
+    register(email, username, fullName) {
+      return fetch(`${this._baseUrl}`, {
+        method: "POST",
+        credentials: "include",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: email,
+          id: username,
+          name: fullName,
+        }),
+      }).then(this._checkResponse);
+    }
   
     signIn(username) {
       return fetch(`${this._baseUrl}/${username}`, {

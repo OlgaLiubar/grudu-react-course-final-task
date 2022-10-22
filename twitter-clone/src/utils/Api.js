@@ -20,26 +20,20 @@ class Api {
     }).then(this._checkResponse);
   }
 
-//   getUserData() {
-//     return fetch(`${this._url}/users/me`, {
-//       method: "GET",
-//       credentials: "include",
-//       headers: this._headers,
-//     }).then(this._checkResponse);
-//   }
-
-  saveTweet(newTweet) {
+  saveTweet(newTweet, authorId, authorName, initials) {
     return fetch(`${this._url}/tweets`, {
       method: "POST",
       credentials: "include",
       headers: this._headers,
       body: JSON.stringify({
-        author_id: "urfinjus",
-        text: `${newTweet.value}`,
+        author_id: authorId,
+        author_name: authorName,
+        initials: initials,
+        text: `${newTweet.text}`,
       }),
     }).then(this._checkResponse);
   }
-
+  // newTweet, authorId, authorName, initials
 //   deleteMovie(movieId) {
 //     return fetch(`${this._url}/movies/${movieId}`, {
 //       method: "DELETE",
