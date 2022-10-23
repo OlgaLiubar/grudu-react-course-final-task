@@ -3,12 +3,9 @@ import Avatar from "@mui/joy/Avatar";
 import Box from "@mui/joy/Sheet";
 import Typography from "@mui/joy/Typography";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
-// import convertNameToInitial from "../utils/convertNameToInitial";
-
 
 export default function ProfileGroup() {
   const {fullName, initials} = React.useContext(CurrentUserContext);
-  // const initial = convertNameToInitial(name);
 
   return (
     <Box

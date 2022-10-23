@@ -1,3 +1,5 @@
+import React from "react";
+import PropTypes from 'prop-types';
 import { useField } from "formik";
 import TextField from "@mui/joy/TextField";
 import Textarea from "@mui/joy/Textarea";
@@ -34,4 +36,8 @@ export const TextInput = ({ ...props }) => {
       )}
     </>
   );
+};
+
+TextInput.propTypes = {
+  textarea: PropTypes.bool,
 };

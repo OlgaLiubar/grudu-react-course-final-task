@@ -1,3 +1,5 @@
+import React from "react";
+import PropTypes from 'prop-types';
 import Logo from "./Logo";
 import ProfileGroup from "./ProfileGroup";
 import Box from "@mui/joy/Sheet";
@@ -40,3 +42,7 @@ export default function Header({ loggedIn }) {
     </Box>
   );
 }
+
+Header.propTypes = {
+  loggedIn: PropTypes.bool,
+};

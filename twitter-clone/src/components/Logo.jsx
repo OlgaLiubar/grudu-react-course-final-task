@@ -1,3 +1,5 @@
+import React from "react";
+import PropTypes from 'prop-types';
 import headerLogo from "../images/headerLogo.png";
 import Box from "@mui/joy/Sheet";
 import Typography from "@mui/joy/Typography";
@@ -41,3 +43,7 @@ export default function Logo({ marginTop }) {
     </Box>
   );
 }
+
+Logo.propTypes = {
+  marginTop: PropTypes.bool,
+};

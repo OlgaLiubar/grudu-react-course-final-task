@@ -5,18 +5,22 @@ import "./App.css";
 import api from "../../utils/Api";
 import { auth } from "../../utils/AuthApi";
 import Main from "../Main";
-import { Login } from "../Login";
-import { SignupForm } from "../Register";
+import { AuthForm } from "../AuthForm";
 import NotFound from "../NotFound";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import convertNameToInitial from "../../utils/convertNameToInitial";
+import { registerValidationSchema } from "../../utils/ValidationSchema";
+import { loginValidationSchema } from "../../utils/ValidationSchema";
 
 function App() {
   const navigate = useNavigate();
   const [currentUser, setCurrentUser] = React.useState({});
   const [tweets, setTweets] = React.useState([]);
   const [loggedIn, setLoggedIn] = React.useState(false);
-  const [serverErr, setServerErr] = React.useState({ isError: false, errorMsg: '' });
+  const [serverErr, setServerErr] = React.useState({
+    isError: false,
+    errorMsg: '',
+  });
 
   React.useEffect(() => {
     api
@@ -25,7 +29,6 @@ function App() {
         setTweets(allTweets);
       })
       .catch((err) => {
-        // setFetchErrMsg(FETCH_MOVIES_ERR);
         console.log(`${err}`);
       });
   }, []);
@@ -40,9 +43,8 @@ function App() {
 
         console.log("Registered successfully");
       })
-      .catch((err) => {
-        setServerErr({isError: true, errorMsg:'Something went wrong'});
-        console.log("500", err);
+      .catch(() => {
+        setServerErr({ isError: true, errorMsg: "Something went wrong" });
       });
   }
 
@@ -50,7 +52,6 @@ function App() {
     return auth
       .signIn(user)
       .then((newUser) => {
-        console.log("user", newUser);
         setCurrentUser({
           fullName: newUser.name,
           initials: convertNameToInitial(newUser.name),
@@ -60,16 +61,15 @@ function App() {
         navigate("/");
       })
       .catch((err) => {
-        if (`${err}` === '404') {
-          setServerErr({isError: true, errorMsg: 'Invalid email or password'});
+        if (`${err}` === "404") {
+          setServerErr({
+            isError: true,
+            errorMsg: "Invalid email or password",
+          });
         } else {
-          setServerErr({isError: true, errorMsg:'Something went wrong'});
-          console.log("500", err);
+          setServerErr({ isError: true, errorMsg: "Something went wrong" });
         }
-      })
-      // .finally(() => {
-      //   console.log("logged in");
-      // });
+      });
   }
 
   function handleSaveTweet(newTweet, authorId, authorName, initials) {
@@ -84,7 +84,7 @@ function App() {
   }
 
   function resetServerError() {
-    setServerErr({isError: false, errorMsg: ''});
+    setServerErr({ isError: false, errorMsg: "" });
   }
 
   return (
@@ -93,13 +93,57 @@ function App() {
         <Routes>
           <Route
             path="/"
-            element={<Main tweets={ tweets } onSaveTweet={ handleSaveTweet } loggedIn={ loggedIn }/>}
+            element={
+              <Main
+                tweets={tweets}
+                onSaveTweet={handleSaveTweet}
+                loggedIn={loggedIn}
+              />
+            }
           />
           <Route
             path="/signup"
-            element={<SignupForm handleRegister={ handleRegister } serverErr={ serverErr } resetServerError={resetServerError}/>}
+            element={
+              <AuthForm
+                register
+                initialValues={{
+                  email: "",
+                  password: "",
+                  username: "",
+                  fullName: "",
+                }}
+                validationSchema={registerValidationSchema}
+                handleSubmit={handleRegister}
+                title={"Sign up"}
+                btnText={"Join Meower!"}
+                authQuestion={"Already have an account?"}
+                linkPath={`/signin`}
+                linkText={"Log in"}
+                serverErr={serverErr}
+                resetServerError={resetServerError}
+              />
+            }
           />
-          <Route path="/signin" element={<Login handleLogin={ handleLogin } serverErr={ serverErr } resetServerError={resetServerError}/>} />
+          <Route
+            path="/signin"
+            element={
+              <AuthForm
+                initialValues={{
+                  password: "",
+                  username: "",
+                }}
+                validationSchema={loginValidationSchema}
+                handleSubmit={handleLogin}
+                title={"Log in"}
+                btnText={"Log in"}
+                authQuestion={"Don't have an account?"}
+                linkPath={`/signup`}
+                linkText={"Log in"}
+                serverErr={serverErr}
+                resetServerError={resetServerError}
+              />
+            }
+          />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </CurrentUserContext.Provider>

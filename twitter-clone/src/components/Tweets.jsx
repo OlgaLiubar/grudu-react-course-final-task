@@ -1,19 +1,22 @@
 import React from "react";
+import PropTypes from 'prop-types';
 import Tweet from "./Tweet";
-import Box from "@mui/joy/Sheet";
+import List from '@mui/joy/List';
 
-export default function Tweets({tweets}) {
-
-  console.log(tweets);
+export default function Tweets({ tweets }) {
 
   return (
-    <Box component="section" sx={{ gap: 2, display: "flex", flexDirection: "column", py: 4 }}>
+    <List sx={{ gap: 2, display: "flex", flexDirection: "column", py: 4 }}>
         {tweets.map((tweet) => (
           <Tweet
             key={tweet.id}
             tweet={tweet}
           />
         ))}
-    </Box>
+    </List>
   );
 }
+
+Tweets.propTypes = {
+  tweets: PropTypes.array,
+};

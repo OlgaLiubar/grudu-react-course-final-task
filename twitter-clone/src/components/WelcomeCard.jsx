@@ -8,8 +8,8 @@ import cat from "../images/cat.png";
 
 export default function WelcomeCard() {
   return (
-    <Card row variant="outlined" sx={{ gap: 1, py: 3 }}>
-      <Box sx={{ textAlign: "center" }}>
+    <Card row variant="outlined" sx={{ gap: 3, p: 4 }}>
+      <Box sx={{ display: "flex", flexDirection: "column", textAlign: "center", justifyContent: "center",gap: 2, width: "65%" }}>
         <Typography level="h1" mt={2}>
           Welcome to Meower!
         </Typography>
@@ -17,7 +17,7 @@ export default function WelcomeCard() {
           An extremely pet-friendly social network.
         </Typography>
         <Typography level="body1">
-          To share your (or your pet's) thoughts with the community{" "}
+          To share your (or your pet&apos;s) thoughts with the community{" "}
           <Link component={RouterLink} to={`/signup`} underline="always">
             join Meower!
           </Link>
@@ -28,7 +28,7 @@ export default function WelcomeCard() {
         style={{
           objectFit: "contain",
           // height: 40,
-          width: "30%",
+          maxWidth: "30%",
         }}
         src={cat}
         alt="cat"

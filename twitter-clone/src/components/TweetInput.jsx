@@ -1,12 +1,11 @@
 import React from "react";
+import PropTypes from 'prop-types';
 import { Formik, Form } from "formik";
 import { tweetValidationSchema } from "../utils/ValidationSchema";
 import Box from "@mui/joy/Box";
 import Button from "@mui/joy/Button";
 import { TextInput } from "./TextInput";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
-
-// import Textarea from '@mui/joy/Textarea';
 
 export default function TweetInput({ onSaveTweet }) {
   const { userId, fullName, initials } = React.useContext(CurrentUserContext);
@@ -18,7 +17,7 @@ export default function TweetInput({ onSaveTweet }) {
           text: "",
         }}
         validationSchema={tweetValidationSchema}
-        onSubmit={(values, { resetForm, setSubmitting  }) => {
+        onSubmit={(values, { resetForm }) => {
           console.log(values);
           onSaveTweet(values, userId, fullName, initials);
           resetForm();
@@ -55,3 +54,7 @@ export default function TweetInput({ onSaveTweet }) {
     </>
   );
 }
+
+TweetInput.propTypes = {
+  onSaveTweet: PropTypes.func,
+};
