@@ -50,5 +50,5 @@ export const registerValidationSchema=Yup.object({
   export const tweetValidationSchema=Yup.object({
     text: Yup.string()
     .max(140, "Too long. Your post shoud be less than 140 characters")
-    .required("Type something"),
+    .required("Type something to submit"),
   })

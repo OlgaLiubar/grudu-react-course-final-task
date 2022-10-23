@@ -6,8 +6,10 @@ import Button from "@mui/joy/Button";
 import Typography from "@mui/joy/Typography";
 import { Formik, Form } from "formik";
 import Logo from "./Logo";
+import ServerError from "./App/ServerError";
 
-export const Login = ({ handleLogin }) => {
+export const Login = ({ handleLogin, serverErr, resetServerError }) => {
+  
   return (
     <>
       <Logo marginTop />
@@ -18,51 +20,57 @@ export const Login = ({ handleLogin }) => {
         }}
         validationSchema={loginValidationSchema}
         onSubmit={(values, { setSubmitting }) => {
-          handleLogin(values.name);
+          console.log(values);
+          handleLogin(values.username);
         }}
       >
-        <Form
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            gap: 5,
-            alignItems: "center",
-            flexWrap: "wrap",
-            width: 396,
-            margin: "15vh auto",
-            padding: 30,
-            border: "1px solid black",
-            borderRadius: 20,
-          }}
-        >
-          <Typography level="h3" component="h1" sx={{ marginBottom: 3 }}>
-            Log in
-          </Typography>
-          <TextInput name="username" type="text" placeholder="Username" />
-          <TextInput name="password" type="password" placeholder="Password" />
-          <Button
-            fullWidth
-            type="submit"
-            size="lg"
-            sx={{
-              px: 2,
-              my: 2,
+        {({ isValid }) => (
+          <Form
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              gap: 5,
+              alignItems: "center",
+              flexWrap: "wrap",
+              width: 396,
+              margin: "15vh auto",
+              padding: 30,
+              border: "1px solid black",
+              borderRadius: 20,
             }}
           >
-            Log in
-          </Button>
-          <Typography>
-            Don't have an account?
-            <Link
-              component={RouterLink}
-              to={`/signup`}
-              underline="hover"
-              sx={{ marginLeft: 1 }}
+            <Typography level="h3" component="h1" sx={{ marginBottom: 3 }}>
+              Log in
+            </Typography>
+            <TextInput name="username" type="text" placeholder="Username" />
+            <TextInput name="password" type="password" placeholder="Password" />
+            {serverErr.isError && <ServerError errorMsg={serverErr.errorMsg} />}
+            <Button
+              fullWidth
+              type="submit"
+              size="lg"
+              disabled={!isValid}
+              sx={{
+                px: 2,
+                my: 2,
+              }}
             >
-              Sign up
-            </Link>
-          </Typography>
-        </Form>
+              Log in
+            </Button>
+            <Typography>
+              Don't have an account?
+              <Link
+                component={RouterLink}
+                to={`/signup`}
+                underline="hover"
+                sx={{ marginLeft: 1 }}
+                onClick={resetServerError}
+              >
+                Sign up
+              </Link>
+            </Typography>
+          </Form>
+        )}
       </Formik>
     </>
   );

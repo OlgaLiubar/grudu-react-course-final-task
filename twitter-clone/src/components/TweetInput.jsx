@@ -18,10 +18,10 @@ export default function TweetInput({ onSaveTweet }) {
           text: "",
         }}
         validationSchema={tweetValidationSchema}
-        onSubmit={(values, { setSubmitting }) => {
+        onSubmit={(values, { resetForm, setSubmitting  }) => {
           console.log(values);
           onSaveTweet(values, userId, fullName, initials);
-          // onSaveTweet(values, authorId, initials);
+          resetForm();
         }}
       >
         <Box
@@ -44,6 +44,7 @@ export default function TweetInput({ onSaveTweet }) {
           />
           <Button
             type="submit"
+            disabled={Formik.isSubmitting || Formik.errors}
             sx={{ float: "right", bgcolor: "#c6c4ca", color: "black" }}
           >
             Tweet

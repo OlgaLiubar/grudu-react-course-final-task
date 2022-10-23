@@ -16,6 +16,7 @@ function App() {
   const [currentUser, setCurrentUser] = React.useState({});
   const [tweets, setTweets] = React.useState([]);
   const [loggedIn, setLoggedIn] = React.useState(false);
+  const [serverErr, setServerErr] = React.useState({ isError: false, errorMsg: '' });
 
   React.useEffect(() => {
     api
@@ -40,7 +41,8 @@ function App() {
         console.log("Registered successfully");
       })
       .catch((err) => {
-        console.log(`Something went wrong: ${err}`);
+        setServerErr({isError: true, errorMsg:'Something went wrong'});
+        console.log("500", err);
       });
   }
 
@@ -58,11 +60,16 @@ function App() {
         navigate("/");
       })
       .catch((err) => {
-        console.log("При авторизации произошла ошибка.");
+        if (`${err}` === '404') {
+          setServerErr({isError: true, errorMsg: 'Invalid email or password'});
+        } else {
+          setServerErr({isError: true, errorMsg:'Something went wrong'});
+          console.log("500", err);
+        }
       })
-      .finally(() => {
-        console.log("logged in");
-      });
+      // .finally(() => {
+      //   console.log("logged in");
+      // });
   }
 
   function handleSaveTweet(newTweet, authorId, authorName, initials) {
@@ -76,19 +83,23 @@ function App() {
       .finally(() => console.log("Уф, сохранили!"));
   }
 
+  function resetServerError() {
+    setServerErr({isError: false, errorMsg: ''});
+  }
+
   return (
     <CssVarsProvider>
       <CurrentUserContext.Provider value={currentUser}>
         <Routes>
           <Route
             path="/"
-            element={<Main tweets={tweets} onSaveTweet={handleSaveTweet} loggedIn={loggedIn}/>}
+            element={<Main tweets={ tweets } onSaveTweet={ handleSaveTweet } loggedIn={ loggedIn }/>}
           />
           <Route
             path="/signup"
-            element={<SignupForm handleRegister={handleRegister} />}
+            element={<SignupForm handleRegister={ handleRegister } serverErr={ serverErr } resetServerError={resetServerError}/>}
           />
-          <Route path="/signin" element={<Login handleLogin={handleLogin} />} />
+          <Route path="/signin" element={<Login handleLogin={ handleLogin } serverErr={ serverErr } resetServerError={resetServerError}/>} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </CurrentUserContext.Provider>

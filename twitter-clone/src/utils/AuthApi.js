@@ -8,7 +8,7 @@ class Auth {
         return res.json();
       }
       console.log(res.json());
-      return Promise.reject(`Error: ${res.status}`);
+      return Promise.reject(res.status);
     }
 
     register(email, username, fullName) {

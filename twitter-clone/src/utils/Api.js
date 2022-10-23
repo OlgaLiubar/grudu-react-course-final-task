@@ -33,23 +33,6 @@ class Api {
       }),
     }).then(this._checkResponse);
   }
-  // newTweet, authorId, authorName, initials
-//   deleteMovie(movieId) {
-//     return fetch(`${this._url}/movies/${movieId}`, {
-//       method: "DELETE",
-//       credentials: "include",
-//       headers: this._headers,
-//     }).then(this._checkResponse);
-//   }
-
-//   uploadUserInfo(data) {
-//     return fetch(`${this._url}/users/me`, {
-//       method: "PATCH",
-//       credentials: "include",
-//       headers: this._headers,
-//       body: JSON.stringify(data),
-//     }).then(this._checkResponse);
-//   }
 }
 
 const api = new Api({

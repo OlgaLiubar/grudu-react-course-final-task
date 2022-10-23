@@ -6,8 +6,10 @@ import Button from "@mui/joy/Button";
 import Typography from "@mui/joy/Typography";
 import { Formik, Form } from "formik";
 import Logo from "./Logo";
+import ServerError from "./App/ServerError";
 
-export const SignupForm = ({ handleRegister }) => {
+export const SignupForm = ({ handleRegister, serverErr, resetServerError }) => {
+
   return (
     <>
       <Logo marginTop />
@@ -23,6 +25,7 @@ export const SignupForm = ({ handleRegister }) => {
           handleRegister(values);
         }}
       >
+        {({ isValid }) => (
         <Form
           style={{
             display: "flex",
@@ -44,10 +47,12 @@ export const SignupForm = ({ handleRegister }) => {
           <TextInput name="password" type="password" placeholder="Password" />
           <TextInput name="username" type="text" placeholder="Username" />
           <TextInput name="fullName" type="text" placeholder="Full name" />
+          {serverErr.isError && (<ServerError errorMsg = { serverErr.errorMsg } />)}
           <Button
             fullWidth
             type="submit"
             size="lg"
+            disabled={!isValid}
             sx={{
               px: 2,
               my: 2,
@@ -62,11 +67,13 @@ export const SignupForm = ({ handleRegister }) => {
               to={`/signin`}
               underline="hover"
               sx={{ marginLeft: 1 }}
+              onClick={resetServerError}
             >
               Log in
             </Link>
           </Typography>
         </Form>
+                )}
       </Formik>
     </>
   );

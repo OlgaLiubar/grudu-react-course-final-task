@@ -1,13 +1,12 @@
 import React from "react";
+import DOMPurify from "dompurify";
 import Card from '@mui/joy/Card';
 import Avatar from "@mui/joy/Avatar";
 import Typography from '@mui/joy/Typography';
 import Box from "@mui/joy/Sheet";
-// import { CurrentUserContext } from "../contexts/CurrentUserContext";
-// import convertNameToInitial from "../utils/convertNameToInitial";
 
 export default function Tweet({key, tweet}) {
-  // const {fullName, initials} = React.useContext(CurrentUserContext);
+  const safeText = DOMPurify.sanitize(tweet.text);
 
   return (
     <Card row variant="outlined">
@@ -15,7 +14,7 @@ export default function Tweet({key, tweet}) {
       <Box sx={{ mx: 3 }}>
         <Typography component="h2">{tweet.author_name}</Typography>
         <Typography component="p">
-        {tweet.text}
+        <div dangerouslySetInnerHTML={{ __html: safeText }} />
         </Typography>
       </Box>
     </Card>
