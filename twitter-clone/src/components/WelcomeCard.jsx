@@ -9,7 +9,16 @@ import cat from "../images/cat.png";
 export default function WelcomeCard() {
   return (
     <Card row variant="outlined" sx={{ gap: 3, p: 4 }}>
-      <Box sx={{ display: "flex", flexDirection: "column", textAlign: "center", justifyContent: "center",gap: 2, width: "65%" }}>
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          textAlign: "center",
+          justifyContent: "center",
+          gap: 2,
+          width: "65%",
+        }}
+      >
         <Typography level="h1" mt={2}>
           Welcome to Meower!
         </Typography>
@@ -27,7 +36,6 @@ export default function WelcomeCard() {
       <img
         style={{
           objectFit: "contain",
-          // height: 40,
           maxWidth: "30%",
         }}
         src={cat}

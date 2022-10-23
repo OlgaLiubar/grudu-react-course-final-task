@@ -5,7 +5,7 @@ import Typography from "@mui/joy/Typography";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
 export default function ProfileGroup() {
-  const {fullName, initials} = React.useContext(CurrentUserContext);
+  const { fullName, initials } = React.useContext(CurrentUserContext);
 
   return (
     <Box
@@ -19,9 +19,11 @@ export default function ProfileGroup() {
       }}
     >
       <Typography fontSize="24px" className="header__profile-name">
-        { fullName }
+        {fullName}
       </Typography>
-      <Avatar sx={{ bgcolor: "#c6c4ca", fontSize: "24px" }} size="lg">{ initials }</Avatar>
+      <Avatar sx={{ bgcolor: "#c6c4ca", fontSize: "24px" }} size="lg">
+        {initials}
+      </Avatar>
     </Box>
   );
 }

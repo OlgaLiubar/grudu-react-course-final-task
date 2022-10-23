@@ -17,11 +17,10 @@ export const AuthForm = (props) => {
         initialValues={props.initialValues}
         validationSchema={props.validationSchema}
         onSubmit={(values) => {
-          console.log(values);
-          if (values.username) {
-            return props.handleSubmit(values.username);
+          if (props.register) {
+            return props.handleSubmit(values);
           }
-          props.handleSubmit(values);
+          props.handleSubmit(values.username);
         }}
       >
         {({ isValid }) => (
@@ -72,11 +71,11 @@ export const AuthForm = (props) => {
               <ServerError errorMsg={props.serverErr.errorMsg} />
             )}
             <Button
-              fullWidth
               type="submit"
               size="lg"
               disabled={!isValid}
               sx={{
+                width: "100%",
                 px: 2,
                 my: 2,
               }}

@@ -35,7 +35,13 @@ export default function NotFound() {
         4
       </Typography>
       <Typography component="p">Страница не найдена</Typography>
-      <Button type="button" onClick={back} color="primary" variant="plain" sx={{ mt: 1 }}>
+      <Button
+        type="button"
+        onClick={back}
+        color="primary"
+        variant="plain"
+        sx={{ mt: 1 }}
+      >
         Назад
       </Button>
     </Box>

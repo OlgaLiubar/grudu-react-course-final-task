@@ -19,7 +19,7 @@ function App() {
   const [loggedIn, setLoggedIn] = React.useState(false);
   const [serverErr, setServerErr] = React.useState({
     isError: false,
-    errorMsg: '',
+    errorMsg: "",
   });
 
   React.useEffect(() => {
@@ -37,10 +37,7 @@ function App() {
     return auth
       .register(email, username, fullName)
       .then(() => {
-        console.log(username, fullName);
-
         handleLogin(username);
-
         console.log("Registered successfully");
       })
       .catch(() => {
@@ -76,11 +73,9 @@ function App() {
     return api
       .saveTweet(newTweet, authorId, authorName, initials)
       .then((savedTweet) => {
-        console.log(savedTweet);
         setTweets((state) => [savedTweet, ...state]);
       })
-      .catch((err) => console.log(`Добавление карточки: ${err}`))
-      .finally(() => console.log("Уф, сохранили!"));
+      .catch((err) => console.log(`${err}`));
   }
 
   function resetServerError() {

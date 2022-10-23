@@ -1,5 +1,5 @@
 import React from "react";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 import Logo from "./Logo";
 import ProfileGroup from "./ProfileGroup";
 import Box from "@mui/joy/Sheet";
@@ -8,7 +8,6 @@ import Link from "@mui/joy/Link";
 import Typography from "@mui/joy/Typography";
 
 export default function Header({ loggedIn }) {
-
   return (
     <Box
       component="header"
@@ -35,7 +34,7 @@ export default function Header({ loggedIn }) {
             fontWeight="lg"
             sx={{ mr: "6vw", textDecoration: "underline" }}
           >
-            Sign in{" "}
+            Sign in
           </Typography>
         </Link>
       )}

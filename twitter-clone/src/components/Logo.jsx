@@ -1,5 +1,5 @@
 import React from "react";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 import headerLogo from "../images/headerLogo.png";
 import Box from "@mui/joy/Sheet";
 import Typography from "@mui/joy/Typography";
